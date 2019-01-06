@@ -8,7 +8,7 @@ d3.json('https://raw.githubusercontent.com/freeCodeCamp/ProjectReferenceData/mas
 	const h = 500;
 	const padding = 50;
 	const barW = w / dataset.length;
-	
+
 	const xScale = d3.scaleTime()
 										.domain([d3.min(dataset, (d) => new Date(d[0])), d3.max(dataset, (d) => new Date(d[0]))])
 										.range([padding, w - padding]);
@@ -16,17 +16,17 @@ d3.json('https://raw.githubusercontent.com/freeCodeCamp/ProjectReferenceData/mas
 	const yScale = d3.scaleLinear()
 										.domain([0, d3.max(dataset, (d) => d[1])])
 										.range([0, h - (padding * 2)]);
-	
+
 	const yScaleAxis = d3.scaleLinear()
 												.domain([0, d3.max(dataset, (d) => d[1])])
 												.range([h - padding, padding]);
-	
+
 	// d3.select('#description').html(data['description'].replace(/\n/, '<br>'));
-	
+
 	var tooltip = d3.select('body')
 									.append('div')
 									.attr('id', 'tooltip');
-	
+
 	const svg = d3.select('#canvas')
 								.append('svg')
 								.attr('width', w)
@@ -57,7 +57,7 @@ d3.json('https://raw.githubusercontent.com/freeCodeCamp/ProjectReferenceData/mas
 			.attr('id', 'x-axis')
 			.attr('transform', 'translate(0, ' + (h - padding) + ')')
 			.call(xAxis);
-	
+
 	svg.append('text')             
       .attr('transform', 'translate(' + (w / 2) + ', ' + (h - 10) + ')')
       .style('text-anchor', 'middle')
@@ -67,7 +67,7 @@ d3.json('https://raw.githubusercontent.com/freeCodeCamp/ProjectReferenceData/mas
 			.attr('id', 'y-axis')
 			.attr('transform', 'translate(' + padding + ', 0)')
 			.call(yAxis);
-	
+
 	svg.append('text')
       .attr('transform', 'rotate(-90)')
       .attr('y', 0)
